@@ -12,6 +12,8 @@ const storage = multer.diskStorage({
   filename: (req, file, callback) => {
     console.log(file);
     callback(null, uuid().slice(0, 7) + path.extname(file.originalname));
+    // note, i used a slice here to reduce the overall length of the uuid.
+    // its just to make it look cleaner, but we can remove it easy.
   },
 });
 
@@ -35,6 +37,7 @@ const upload = multer({ storage: storage, fileFilter: fileFilter }).single(
 // --------------main section ----------- //
 
 app.set("view engine", "ejs");
+// also using ejs for easy viewing
 
 app.get("/", (req, res) => {
   res.render("main");
