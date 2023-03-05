@@ -60,6 +60,11 @@ app.get("/upload", (req, res) => {
 
 // --------------download section ----------- //
 
+app.get("/download", (req, res) => {
+    res.render('download')
+});
+
+
 // --------------end download section ----------- //
 
 // app listener
