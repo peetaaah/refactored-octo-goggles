@@ -44,8 +44,17 @@ app.get("/", (req, res) => {
 });
 
 // --------------end main section ----------- //
-// --------------upload section ----------- //
 
+// --------------upload section ------------ //
+
+app.get("/upload", (req, res) => {
+    res.render("upload");
+  });
+  
+  app.post("/upload", upload, (req, res) => {
+    res.render("uploaded")
+    console.log(req.file.buffer);
+  });
 
 // --------------end upload section ----------- //
 
