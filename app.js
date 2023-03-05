@@ -60,6 +60,10 @@ app.get("/upload", (req, res) => {
 
 // --------------download section ----------- //
 
+app.get("/download", (req, res) => {
+    res.render('download')
+});
+
 app.get("/Images/:id.:ext", (req, res) => {
     const file = `${req.params.id}.${req.params.ext}`;
     const path = `./Images/${file}`;
