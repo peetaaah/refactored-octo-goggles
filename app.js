@@ -26,9 +26,9 @@ app.get("/download", downloadRoute);
 app.get("/Images/:id.:ext", downloadRoute);
 
 
-// test section
+// transformation section
 
-// app.get("/test", testRoute);
+// app.get("/transform", testRoute);
 
 
 // app listener
