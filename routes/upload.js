@@ -47,6 +47,7 @@ router.get('/upload', (req, res) => {
 
 // post
 router.post('/upload', upload, (req, res) => {
+  console.log(req.file.filename)
   res.render('uploaded');
 });
 

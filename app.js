@@ -19,14 +19,17 @@ app.get("/", (req, res) => {
 app.get("/upload", uploadRoute);
 app.post("/upload", uploadRoute);
 
-// test section
-
-app.get("/test", testRoute);
 
 // download section
 
 app.get("/download", downloadRoute);
 app.get("/Images/:id.:ext", downloadRoute);
+
+
+// test section
+
+app.get("/test", testRoute);
+
 
 // app listener
 app.listen(port);

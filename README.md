@@ -1,5 +1,5 @@
 # refactored-octo-goggles
-terrascope test. had to throw off other people, haha
+Terrascope test.
 
 ## Notes:
 I'm aware that there's a bunch of stuff that is somewhat messy, but I'll refactor as best as I can as the days go on.
@@ -36,3 +36,11 @@ ProgImage service. The library should be idiomatic for the target language.
 2. Stretch - Series of microservices for image transformation
 3. API shim
 4. TESTING!
+
+
+### To Run
+1. run `npm install`
+2. run `npm run devStart`
+This activates the nodemon for you to see.
+3. Click around and upload your photo, you should be able to see the successful upload.
+4. Should should be able to see the file name, you can download it via `localhost:3050/Images/{yourfilename}.{ext}`
