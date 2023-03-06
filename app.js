@@ -28,9 +28,11 @@ app.get("/Images/:id.:ext", downloadRoute);
 
 // test section
 
-app.get("/test", testRoute);
+// app.get("/test", testRoute);
 
 
 // app listener
 app.listen(port);
 console.log("listening on port" + `${port}`);
+
+module.exports = app
