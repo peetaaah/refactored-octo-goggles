@@ -4,6 +4,8 @@ const path = require("path");
 const { uuid } = require("uuidv4");
 const port = 3050;
 const fs = require("fs");
+const uploadRoute = require("./routes/upload");
+const testRoute = require("./routes/test");
 
 const app = express();
 
@@ -20,7 +22,13 @@ const storage = multer.diskStorage({
 //  -------- file filtering for images -------------- //
 let fileFilter = function (req, file, cb) {
   console.log(file.mimetype);
-  const allowedMimes = ["image/jpeg", "image/jpg", "image/png", "image/gif", "image/svg+xml"];
+  const allowedMimes = [
+    "image/jpeg",
+    "image/jpg",
+    "image/png",
+    "image/gif",
+    "image/svg+xml",
+  ];
 
   if (allowedMimes.includes(file.mimetype)) {
     cb(null, true);
@@ -47,46 +55,46 @@ app.get("/", (req, res) => {
 
 // --------------upload section ------------ //
 
-app.get("/upload", (req, res) => {
-    res.render("upload");
-  });
-  
-  app.post("/upload", upload, (req, res) => {
-    res.render("uploaded")
-    console.log(req.file.buffer);
-  });
+// app.get("/upload", (req, res) => {
+//     res.render("upload");
+//   });
 
+
+app.post("/upload", upload, (req, res) => {
+  res.render("uploaded")
+  console.log(req.file.buffer);
+});
+app.get("/upload", uploadRoute);
 // --------------end upload section ----------- //
-
+app.get("/test", testRoute);
 // --------------download section ----------- //
 
 app.get("/download", (req, res) => {
-    res.render('download')
+  res.render("download");
 });
 
 app.get("/Images/:id.:ext", (req, res) => {
-    const file = `${req.params.id}.${req.params.ext}`;
-    const path = `./Images/${file}`;
-    const readStream = fs.createReadStream(path);
-    if (!fs.existsSync(path)) {
-      res.status(404).send("File not found");
-    } else {
-      readStream.on("open", () => {
-        // set the content type and attachment header
-        res.setHeader("Content-Type", "application/octet-stream");
-        res.setHeader("Content-Disposition", "attachment; filename=" + file);
-  
-        // pipe the read stream to the response object
-        readStream.pipe(res);
-      });
-  
-      readStream.on("error", (err) => {
-        res.end(err);
-      });
-      // res.sendFile(path, {root: __dirname});
-    }
-  });
+  const file = `${req.params.id}.${req.params.ext}`;
+  const path = `./Images/${file}`;
+  const readStream = fs.createReadStream(path);
+  if (!fs.existsSync(path)) {
+    res.status(404).send("File not found");
+  } else {
+    readStream.on("open", () => {
+      // set the content type and attachment header
+      res.setHeader("Content-Type", "application/octet-stream");
+      res.setHeader("Content-Disposition", "attachment; filename=" + file);
 
+      // pipe the read stream to the response object
+      readStream.pipe(res);
+    });
+
+    readStream.on("error", (err) => {
+      res.end(err);
+    });
+    // res.sendFile(path, {root: __dirname});
+  }
+});
 
 // --------------end download section ----------- //
 

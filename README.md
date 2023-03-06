@@ -27,3 +27,12 @@ various services using a runtime virtualisation or containerisation technology o
 reusable library (eg Ruby Gem, Node Package, etc). The library should provide a clean and
 simple programmatic interface that would allow a client back-end application to talk to the
 ProgImage service. The library should be idiomatic for the target language. 
+
+
+
+
+### TODOs
+1. Refactor and split services to different modules 
+2. Stretch - Series of microservices for image transformation
+3. API shim
+4. TESTING!
