@@ -6,14 +6,6 @@ const shortened = uuid().slice(0, 5);
 
 const router = express.Router();
 
-const file = `${req.params.id}.${req.params.ext}`;
-const path = `./images/${file}`;
-const readStream = fs.createReadStream(path);
-
-const changeFormat =() => {
-  sharp(!fs.existsSync(path))
-  .toFormat(fs.existsSync(path))
-}
 
 router.get("/download", (req, res) => {
   res.render("download");
