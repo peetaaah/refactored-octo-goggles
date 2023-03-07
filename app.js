@@ -5,10 +5,12 @@ const testRoute = require("./routes/test");
 const downloadRoute = require("./routes/download");
 
 const app = express();
+app.use(express.static(__dirname + '/images'))
 
 // main section
 
 app.set("view engine", "ejs");
+
 
 app.get("/", (req, res) => {
   res.render("main");
