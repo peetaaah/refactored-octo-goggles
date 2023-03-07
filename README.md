@@ -44,3 +44,14 @@ ProgImage service. The library should be idiomatic for the target language.
 This activates the nodemon for you to see.
 3. Click around and upload your photo, you should be able to see the successful upload.
 4. Should should be able to see the file name, you can download it via `localhost:3050/Images/{yourfilename}.{ext}`
+
+
+### Final entry:
+
+I am unfortunately unable to get it to fully run.
+
+It's able to upload and download, but I'm not sure why my sharp package does not let me convert.
+
+I've never used sharp before, so that is also probably a reason why I'm not as familiar with it.
+
+Thank you for the opportunity and for reading through the code!
