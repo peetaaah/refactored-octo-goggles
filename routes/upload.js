@@ -6,7 +6,7 @@ const { uuid } = require("uuidv4");
 const router = express.Router();
 
 const storage = multer.diskStorage({
-  destination: "./Images",
+  destination: "./images",
   filename: (req, file, callback) => {
     console.log(file);
     callback(null, uuid().slice(0, 7) + path.extname(file.originalname));

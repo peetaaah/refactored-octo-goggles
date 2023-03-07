@@ -23,7 +23,7 @@ app.post("/upload", uploadRoute);
 // download section
 
 app.get("/download", downloadRoute);
-app.get("/Images/:id.:ext", downloadRoute);
+app.get("/images/:id.:ext", downloadRoute);
 
 
 // transformation section

@@ -1,17 +1,23 @@
 const express = require("express");
 const fs = require("fs");
-// const path = import("path");
+const sharp = require("sharp");
 
 const router = express.Router();
+
+const file = `${req.params.id}.${req.params.ext}`;
+const path = `./images/${file}`;
+const readStream = fs.createReadStream(path);
+
+const changeFormat =() => {
+  sharp(!fs.existsSync(path))
+  .toFormat(fs.existsSync(path))
+}
 
 router.get("/download", (req, res) => {
   res.render("download");
 });
 
-router.get("/Images/:id.:ext", (req, res) => {
-  const file = `${req.params.id}.${req.params.ext}`;
-  const path = `./Images/${file}`;
-  const readStream = fs.createReadStream(path);
+router.get("/images/:id.:ext", (req, res) => {
   if (!fs.existsSync(path)) {
     res.status(404).send("File not found");
   } else {

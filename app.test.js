@@ -27,9 +27,9 @@ describe("GET /download", () => {
         expect(response.statusCode).toBe(200)
     })
 })
-describe("GET /Images/:id.:ext", () => {
+describe("GET /images/:id.:ext", () => {
     test('it should respond with 404 code if file does not exist', async () => {
-        const response = await request(app).get('/Images/NoSuchFile.png');
+        const response = await request(app).get('/images/NoSuchFile.png');
         // this is just to make sure that it indeed does return a 404 on NoSuchFile.png.
         // pls don't add an actual NoSuchFile.png haha
         expect(response.statusCode).toBe(404)
