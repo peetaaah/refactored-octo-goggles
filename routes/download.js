@@ -1,6 +1,8 @@
 const express = require("express");
 const fs = require("fs");
 const sharp = require("sharp");
+const { uuid } = require("uuidv4");
+const shortened = uuid().slice(0, 5);
 
 const router = express.Router();
 
@@ -17,22 +19,64 @@ router.get("/download", (req, res) => {
   res.render("download");
 });
 
-router.get("/images/:id.:ext", (req, res) => {
-  if (!fs.existsSync(path)) {
-    res.status(404).send("File not found");
+// const allowedMimes = [
+//   "image/jpeg",
+//   "image/jpg",
+//   "image/png",
+//   "image/gif",
+//   "image/svg+xml",
+// ];
+
+router.get("/Images/:id.:ext", (req, res) => {
+  const file = `${req.params.id}.${req.params.ext}`;
+  const path = `./Images/${file}`;
+  const readStream = fs.createReadStream(path);
+  let mimeType;
+  let convertedType = req.params.ext;
+
+  if (req.params.ext === "jpg" || req.params.ext === "jpeg") {
+    mimeType = "image/jpeg";
+    convertedType = "jpg";
+  } else if (req.params.ext === "png") {
+    mimeType = "image/png";
+    convertedType = "png";
   } else {
-    readStream.on("open", () => {
-      // set the content type and attachment header
-      res.setHeader("Content-Type", "application/octet-stream");
+    res.status(400).send("Invalid file type!");
+  }
+
+  res.header("Content-Type", mimeType);
+  let convertedFile = `./Images/${req.params.id}.${convertedType}`;
+  console.log(convertedFile);
+  console.log(convertedType);
+
+  if (req.query.convert) {
+    if (fs.existsSync(convertedFile)) {
+      //   download normal file, unchanged format
       res.setHeader("Content-Disposition", "attachment; filename=" + file);
-
-      // pipe the read stream to the response object
       readStream.pipe(res);
-    });
-
-    readStream.on("error", (err) => {
-      res.end(err);
-    });
+      console.log("file is NOT converted, downloading.");
+    } else {
+        // create new file with convertedType
+      sharp(path)
+        .toFormat(convertedType)
+        .toFile(`./Converted/${shortened}.${convertedFile}`, (err) => {
+          if (err) {
+            console.error(err);
+            console.log();
+            res
+              .status(500)
+              .send("There was an error with converting your file.");
+          } else {
+            // download converted file
+            res.setHeader(
+              "Content-Disposition",
+              "attachment; filename=" + convertedFile
+            );
+            fs.createReadStream(convertedFile).pipe(res);
+            console.log("file is converted, downloading.");
+          }
+        });
+    }
   }
 });
 
