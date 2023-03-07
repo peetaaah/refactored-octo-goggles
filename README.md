@@ -43,7 +43,7 @@ ProgImage service. The library should be idiomatic for the target language.
 2. run `npm run devStart`
 This activates the nodemon for you to see.
 3. Click around and upload your photo, you should be able to see the successful upload.
-4. Should should be able to see the file name, you can download it via `localhost:3050/Images/{yourfilename}.{ext}`
+4. Should should be able to see the file name, you can download it via `localhost:3050/images/{yourfilename}.{ext}`
 
 ### Final entry:
 

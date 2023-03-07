@@ -27,9 +27,9 @@ router.get("/download", (req, res) => {
 //   "image/svg+xml",
 // ];
 
-router.get("/Images/:id.:ext", (req, res) => {
+router.get("/images/:id.:ext", (req, res) => {
   const file = `${req.params.id}.${req.params.ext}`;
-  const path = `./Images/${file}`;
+  const path = `./images/${file}`;
   const readStream = fs.createReadStream(path);
   let mimeType;
   let convertedType = req.params.ext;
@@ -45,7 +45,7 @@ router.get("/Images/:id.:ext", (req, res) => {
   }
 
   res.header("Content-Type", mimeType);
-  let convertedFile = `./Images/${req.params.id}.${convertedType}`;
+  let convertedFile = `./images/${req.params.id}.${convertedType}`;
   console.log(convertedFile);
   console.log(convertedType);
 
