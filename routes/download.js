@@ -3,7 +3,6 @@ const fs = require("fs");
 const sharp = require("sharp");
 const { uuid } = require("uuidv4");
 const shortened = uuid().slice(0, 5);
-const pathing = require('path')
 
 const router = express.Router();
 
