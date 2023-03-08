@@ -1,11 +1,9 @@
 const express = require("express");
 const port = 3050;
 const uploadRoute = require("./routes/upload");
-const testRoute = require("./routes/test");
 const downloadRoute = require("./routes/download");
 
 const app = express();
-app.use(express.static(__dirname + '/images'))
 
 // main section
 

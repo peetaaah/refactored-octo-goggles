@@ -54,3 +54,8 @@ It's able to upload and download, but I'm not sure why my sharp package does not
 I've never used sharp before, so that is also probably a reason why I'm not as familiar with it.
 
 Thank you for the opportunity and for reading through the code!
+
+### Final, Final Entry
+
+HAHA, IT WORKS!
+Buggy, but it runs for sure!
