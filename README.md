@@ -10,6 +10,8 @@ I'm aware that there's a bunch of stuff that is somewhat messy, but I'll refacto
 2. Express.
 3. UUID.
 4. Nodemon (Dev dependency, just for easy testing / hot reloads)
+5. Node 16.18.1 and above.
+6. updated brew vip (it interferes with the sharp packages for old versions)
 
 ## Instructions
 
@@ -42,8 +44,13 @@ ProgImage service. The library should be idiomatic for the target language.
 1. run `npm install`
 2. run `npm run devStart`
 This activates the nodemon for you to see.
-3. Click around and upload your photo, you should be able to see the successful upload.
-4. Should should be able to see the file name, you can download it via `localhost:3050/images/{yourfilename}.{ext}`
+3. Click around and upload your photo, you should be able to see the successful upload. upload is located at `localhost:3050/upload`
+4. Should should be able to see the file name, you can download it via `localhost:3050/images/{yourfilename}.{ext}?convert={newImageForat}`
+i.e. it will look like `http://localhost:3050/images/xxxxxxx.png?convert=jpg`
+5. check the converted folder for the different images!
+6. for greyscale, it's currently bugged but it does work. you can run the same way
+: `http://localhost:3050/images/xxxxxxx.png?convert=grey`
+it will however throw and error, BUT the file will be created (in greyscale) in the `greyscale-converted/ folder.`
 
 ### Final entry:
 
