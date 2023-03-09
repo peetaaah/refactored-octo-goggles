@@ -51,6 +51,10 @@ i.e. it will look like `http://localhost:3050/images/xxxxxxx.png?convert=jpg`
 6. for greyscale, it's currently bugged but it does work. you can run the same way
 : `http://localhost:3050/images/xxxxxxx.png?convert=grey`
 it will however throw and error, BUT the file will be created (in greyscale) in the `greyscale-converted/ folder.`
+7. Tested on both Firefox and Chrome. Seems like Firefox has a weird bug which attempts to download the original photo but with 0 bytes.
+Works fine on Chrome.
+8. As a note, when running this in localhost, the first few pulls will result in a crash, BUT will still create the converted image. my working theory is that it takes time for the conversion to occur. After that, it'll download just fine.
+0. points to improve --> adding a wait timer. It's currently async, and i tested it without async too. same results.
 
 ### Final entry:
 
